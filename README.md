@@ -1,8 +1,8 @@
 # xtendweb-nginx
 
-opt/ Discuz and ECSHOP templates of xtendweb-nginx
+opt/ → Discuz and ECSHOP templates of xtendweb-nginx
 
-etc/ limit webdisk download speed and connection 
+etc/ → limit webdisk download speed and connection 
 
 # register nginx into cPanel's checksrvd 
 
