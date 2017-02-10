@@ -1,0 +1,93 @@
+#Discuz X
+root {{ DOCUMENTROOT }};
+index index.php index.html index.htm;
+location / {
+
+# Include NAXSI settings
+{% if NAXSI == 'enabled' %}
+{% if NAXSIMODE == 'learn' %}
+include /etc/nginx/conf.d/naxsi_learn.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% elif NAXSIMODE == 'active' %}
+include /etc/nginx/conf.d/naxsi_active.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% endif %}
+{% endif %}
+# End Include NAXSI settings
+
+
+# Include NAXSI settings
+{% if NAXSI == 'enabled' %}
+location /NaxsiRequestDenied {
+return 418;
+}
+{% endif %}
+# End Include NAXSI settings
+
+# Include any applications in subdirectory
+{% for KEY, VALUE in SUBDIRAPPS.iteritems() %}
+location /{{ KEY }}/ {
+
+# Include NAXSI settings
+{% if NAXSI == 'enabled' %}
+{% if NAXSIMODE == 'learn' %}
+include /etc/nginx/conf.d/naxsi_learn.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% elif NAXSIMODE == 'active' %}
+include /etc/nginx/conf.d/naxsi_active.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% endif %}
+{% endif %}
+# End Include NAXSI settings
+
+include /etc/nginx/sites-enabled/{{ VALUE }}.subinclude;
+}
+{% endfor %}
+# End Include any applications in subdirectory
+
+location ~ ^/pingphpfpm$ {
+include /etc/nginx/fastcgi_params*;
+fastcgi_pass unix:{{ SOCKETFILE }};
+}
+location = /wp-login.php {
+limit_req   zone=one  burst=1 nodelay;
+include /etc/nginx/fastcgi_params*;
+fastcgi_pass unix:{{ SOCKETFILE }};
+}
+location ~* \.(js|css|png|jpg|jpeg|gif|swf|xml|ico|pdf|flv|txt)$ {
+expires 1d;
+}
+location ~* /\.(?!well-known\/) { deny all; access_log off; log_not_found off; }
+location ~ \.php$ {
+
+# Include NAXSI settings
+{% if NAXSI == 'enabled' %}
+{% if NAXSIMODE == 'learn' %}
+include /etc/nginx/conf.d/naxsi_learn.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% elif NAXSIMODE == 'active' %}
+include /etc/nginx/conf.d/naxsi_active.rules;
+include /etc/nginx/sites-enabled/{{ CONFIGDOMAINNAME }}.wl;
+{% endif %}
+{% endif %}
+# End Include NAXSI settings
+
+try_files $uri =404;
+fastcgi_pass unix:{{ SOCKETFILE }};
+fastcgi_index index.php;
+include /etc/nginx/fastcgi_params*;
+}
+include /etc/nginx/conf.d/cpanel_services.conf;
+
+rewrite ^([^\.]*)/topic-(.+)\.html$ $1/portal.php?mod=topic&topic=$2 last;
+rewrite ^([^\.]*)/article-([0-9]+)-([0-9]+)\.html$ $1/portal.php?mod=view&aid=$2&page=$3 last;
+rewrite ^([^\.]*)/forum-(\w+)-([0-9]+)\.html$ $1/forum.php?mod=forumdisplay&fid=$2&page=$3 last;
+rewrite ^([^\.]*)/thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ $1/forum.php?mod=viewthread&tid=$2&extra=page%3D$4&page=$3 last;
+rewrite ^([^\.]*)/group-([0-9]+)-([0-9]+)\.html$ $1/forum.php?mod=group&fid=$2&page=$3 last;
+rewrite ^([^\.]*)/space-(username|uid)-(.+)\.html$ $1/home.php?mod=space&$2=$3 last;
+rewrite ^([^\.]*)/blog-([0-9]+)-([0-9]+)\.html$ $1/home.php?mod=space&uid=$2&do=blog&id=$3 last;
+rewrite ^([^\.]*)/(fid|tid)-([0-9]+)\.html$ $1/index.php?action=$2&value=$3 last;
+rewrite ^([^\.]*)/([a-z]+[a-z0-9_]*)-([a-z0-9_\-]+)\.html$ $1/plugin.php?id=$2:$3 last;
+if (!-e $request_filename) {
+    return 404;
+}

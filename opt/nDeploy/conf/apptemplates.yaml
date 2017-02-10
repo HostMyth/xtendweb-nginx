@@ -1,0 +1,89 @@
+HHVM:
+  5001.j2: Wordpress
+  5002.j2: Joomla
+  5003.j2: Magento
+  5012.j2: X-Cart
+  5013.j2: SilverStripe
+  5014.j2: CMS Made Simple
+  5015.j2: Codeignitor
+  5016.j2: Drupal7 or higher
+  5017.j2: Drupal6 or lower
+  5018.j2: Prestashop
+  5019.j2: Moodle
+  5020.j2: OwnCloud
+  5021.j2: WHMCS
+  5022.j2: Laravel
+  5023.j2: Snipe-IT
+  5024.j2: Magento+Fooman Speedster
+  5025.j2: Magento-2
+  5026.j2: Wordpress+FastCGI(microcache)
+  5027.j2: Wordpress Multisite(subdirectory)
+  5028.j2: Wordpress+WPSuperCache
+  5029.j2: Wordpress+w3tc
+  5030.j2: Wordpress+w3tc+minify
+  5031.j2: CakePHP
+  5100.j2: A PHP application
+HHVM_NOBODY:
+  5001.j2: Wordpress
+  5002.j2: Joomla
+  5003.j2: Magento
+  5012.j2: X-Cart
+  5013.j2: SilverStripe
+  5014.j2: CMS Made Simple
+  5015.j2: Codeignitor
+  5016.j2: Drupal7 or higher
+  5017.j2: Drupal6 or lower
+  5018.j2: Prestashop
+  5019.j2: Moodle
+  5020.j2: OwnCloud
+  5021.j2: WHMCS
+  5022.j2: Laravel
+  5023.j2: Snipe-IT
+  5024.j2: Magento+Fooman Speedster
+  5025.j2: Magento-2
+  5026.j2: Wordpress+FastCGI(microcache)
+  5027.j2: Wordpress Multisite(subdirectory)
+  5028.j2: Wordpress+WPSuperCache
+  5029.j2: Wordpress+w3tc
+  5030.j2: Wordpress+w3tc+minify
+  5031.j2: CakePHP
+  5100.j2: A PHP application
+NODEJS:
+  4001.j2: A NodeJS application
+  4002.j2: Ghost Blog
+PHP:
+  5001.j2: Wordpress
+  5002.j2: Joomla
+  5003.j2: Magento
+  5012.j2: X-Cart
+  5013.j2: SilverStripe
+  5014.j2: CMS Made Simple
+  5015.j2: Codeignitor
+  5016.j2: Drupal7 or higher
+  5017.j2: Drupal6 or lower
+  5018.j2: Prestashop
+  5019.j2: Moodle
+  5020.j2: OwnCloud
+  5021.j2: WHMCS
+  5022.j2: Laravel
+  5023.j2: Snipe-IT
+  5024.j2: Magento+Fooman Speedster
+  5025.j2: Magento-2
+  5026.j2: Wordpress+FastCGI(microcache)
+  5027.j2: Wordpress Multisite(subdirectory)
+  5028.j2: Wordpress+WPSuperCache
+  5029.j2: Wordpress+w3tc
+  5030.j2: Wordpress+w3tc+minify
+  5031.j2: CakePHP
+  5100.j2: A PHP application
+  6001.j2: Discuz X
+  6002.j2: Discuz 7
+  6003.j2: ECSHOP 2.7
+PROXY:
+  1000.j2: Proxy to httpd
+  1002.j2: Proxy to httpd(microcache)
+  1005.j2: Proxy to httpd(cached)
+PYTHON:
+  3001.j2: Python(WSGI) App
+RUBY:
+  2001.j2: Ruby on Rails(Rack) App
